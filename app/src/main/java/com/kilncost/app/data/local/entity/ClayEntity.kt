@@ -9,6 +9,4 @@ data class ClayEntity(
     val id: String,
     val name: String,
     val pricePerLBCents: Int,
-
-
 )
