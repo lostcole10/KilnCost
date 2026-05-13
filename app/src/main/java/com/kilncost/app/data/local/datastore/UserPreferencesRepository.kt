@@ -1,7 +1,6 @@
 package com.kilncost.app.data.local.datastore
 
 import android.content.Context
-import android.icu.util.Currency
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
@@ -17,16 +16,22 @@ class UserPreferencesRepository(private val context: Context) {
     private  val dataStore = context.dataStore
 
     companion object{
-        private var TIME_COST_CENTS_PER_HR = intPreferencesKey("Time_Cost_Cents_per_Hr")
-        private var DEFAULT_PROFIT_MARGIN = floatPreferencesKey("Profit Margin")
-        private var HAS_COMPLETED_ONBOARDING = booleanPreferencesKey("completed onboarding")
-        private var CURRENCY_SYMBOL = stringPreferencesKey("currency symbol")
-        private var DIMENSION_UNIT = stringPreferencesKey("Dimension unit")
+        private val TIME_COST_CENTS_PER_HR = intPreferencesKey("Time_Cost_Cents_Per_Hr")
+        private val PROFIT_MARGIN = floatPreferencesKey("Profit_Margin")
+        private val HAS_COMPLETED_ONBOARDING = booleanPreferencesKey("completed_Onboarding")
+        private val CURRENCY_SYMBOL = stringPreferencesKey("Currency_Symbol")
+        private val DIMENSION_UNIT = stringPreferencesKey("Dimension_Unit")
+        private val WEIGHT_UNIT = stringPreferencesKey("Weight_Unit")
 
     }
 
-    val prefernces: Flow<UserSettings> = dataStore.data.map { prefs -> UserPreferences (
-
+    val preferences: Flow<UserSettings> = dataStore.data.map { prefs -> UserSettings (
+        prefs[TIME_COST_CENTS_PER_HR] ?: 0,
+        prefs[PROFIT_MARGIN] ?: 20.0f,
+        prefs[HAS_COMPLETED_ONBOARDING] ?: false,
+        prefs[CURRENCY_SYMBOL] ?: "$",
+        prefs[DIMENSION_UNIT] ?: "cm",
+        prefs[WEIGHT_UNIT] ?: "lbs"
             )}
 
 
