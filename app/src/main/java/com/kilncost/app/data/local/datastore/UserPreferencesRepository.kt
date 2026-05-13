@@ -2,6 +2,7 @@ package com.kilncost.app.data.local.datastore
 
 import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
@@ -33,6 +34,30 @@ class UserPreferencesRepository(private val context: Context) {
         prefs[DIMENSION_UNIT] ?: "cm",
         prefs[WEIGHT_UNIT] ?: "lbs"
             )}
+
+    suspend fun setTimeCostCentsPerHr(amount: Int){
+        dataStore.edit { prefs -> prefs[TIME_COST_CENTS_PER_HR] = amount }
+    }
+
+    suspend fun setProfitMargin(amount : Float){
+        dataStore.edit { prefs -> prefs[PROFIT_MARGIN] = amount }
+    }
+
+    suspend fun setHasCompletedOnboarding(bool : Boolean){
+        dataStore.edit { prefs -> prefs[HAS_COMPLETED_ONBOARDING] = bool }
+    }
+
+    suspend fun setCurrencySymbol(symbol : String){
+        dataStore.edit { prefs -> prefs[CURRENCY_SYMBOL] = symbol}
+    }
+
+    suspend fun setDimensionUnit(unit: String){
+        dataStore.edit { prefs -> prefs[DIMENSION_UNIT] = unit }
+    }
+
+    suspend fun setWeightUnit(unit: String){
+        dataStore.edit { prefs -> prefs[WEIGHT_UNIT] = unit }
+    }
 
 
 
