@@ -31,3 +31,4 @@ data class PieceEntity(
     var updatedAt: Long = System.currentTimeMillis()
 )
 
+//For v.02 add glaze types / patterns
