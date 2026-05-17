@@ -26,7 +26,7 @@ data class PieceEntity(
     var setId: String? = null,
     var sellingPrice: Int? = null,                          // should be nullable
     var soldPrice: Int? = null,                             // Int not Long
-    var soldAt: Long? = null,                               // missing from yours
+    var soldAt: Long? = null,
     val createdAt: Long = System.currentTimeMillis(),
     var updatedAt: Long = System.currentTimeMillis()
 )
